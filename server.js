@@ -10,14 +10,17 @@ app.use(bodyParser.json());
 app.get('/contactList', function(req, res) {
 	console.log('I received a GET request')
 	
-	db.contactList.find(function(err, docs) {
-		console.log(docs);
-		res.json(docs);
+	db.contactList.find(function(err, doc) {
+		console.log(doc);
+		res.json(doc);
 	});
 });
 
 app.post('/contactList', function(req, res) {
 	console.log(req.body);
+	db.contactList.insert(req.body, function(err, doc) {
+		res.json(doc);
+	});
 });
 
 app.listen(3000);
