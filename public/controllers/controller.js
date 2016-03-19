@@ -13,6 +13,7 @@ function AppCtrl($scope, $http) {
 	
 	$scope.addContact = function() {
 		console.log($scope.contact);
+		$scope.contact._id = "";
 		$http.post('/contactList', $scope.contact).success(function(res) {
 			console.log(res);
 			refresh();
@@ -38,5 +39,9 @@ function AppCtrl($scope, $http) {
 		$http.put('/contactList/' + $scope.contact._id, $scope.contact).success(function(res) {
 			refresh();
 		});
+	};
+	
+	$scope.deselect = function() {
+		$scope.contact = "";
 	};
 }
