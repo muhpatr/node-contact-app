@@ -25,4 +25,18 @@ function AppCtrl($scope, $http) {
 			refresh();
 		});
 	};
+	
+	$scope.edit = function(id) {
+		console.log(id);
+		$http.get('/contactList/' + id).success(function(res) {
+			$scope.contact = res;
+		});
+	};
+	
+	$scope.update = function() {
+		console.log($scope.contact._id);
+		$http.put('/contactList/' + $scope.contact._id, $scope.contact).success(function(res) {
+			refresh();
+		});
+	};
 }
